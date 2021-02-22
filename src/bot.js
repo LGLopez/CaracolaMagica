@@ -1,4 +1,4 @@
-//require('dotenv').config();
+require('dotenv').config();
 
 const { Client, Message } = require('discord.js');
 const client = new Client();
@@ -31,16 +31,17 @@ client.on('message', (message) => {
             caracolaReplyRandom = Math.floor(Math.random() * 7);
             message.reply(caracolaReplies[caracolaReplyRandom]);
         }
-        
     }
 
-    
+    if (message.content.toLowerCase() === "la caracola ha hablado" || message.content.toLowerCase() === 'la caracola a hablado'){
+        message.reply(':snail: !!!');
+    }
 
     badWordsFilter.forEach(element => {
         if (message.content.toLowerCase().search(element) != -1) {
             message.reply('No digas eso, la caracola se pone triste.');
         }
-    });  
+    });
 });
 
 client.login(process.env.DISCORD_JS_TOKEN);
